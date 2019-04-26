@@ -47,16 +47,17 @@ export const Icon = styled.div`
 `;
 export const TextWeather = styled.div`
   color: #fff;
-  text-transform: uppercase;
+  text-transform: capitalize;
 `;
 export const FooterContainer = styled.div`
   display: flex;
   background-color: #fff;
   justify-content: center;
-  padding: 10px;
+  padding: 10px 0;
 `;
 export const TodayContainer = styled.div`
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
 `;
@@ -65,7 +66,7 @@ export const Today = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 20px;
 `;
 export const Temperature = styled.div`
   font-size: 48px;
@@ -78,12 +79,12 @@ export const Day = styled.div`
   margin-bottom: 10px;
 `;
 export const Line = styled.div`
-  display: flex;
-  border: 1px solid #deddde;
-  margin-right: 15px;
-  &:last-of-type {
-    display: none;
-  }
+  width: 1px;
+  background-color: #deddde;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
 `;
 export const WeekContainer = styled.div`
   display: flex;
@@ -93,7 +94,8 @@ export const DayWeekContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-right: 15px;
+  padding: 0 16px;
+  position: relative;
   &:last-of-type {
     margin-right: 0;
   }
