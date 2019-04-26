@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {
   Container,
   TopBlock,
-  City,
+  Label,
   RightBlock,
   Place,
   Time,
@@ -164,13 +164,13 @@ export class WeatherBlueContainer extends Component {
   }
 
   render() {
-    return <WeatherBlue city="Today's Forecast" {...this.state} />;
+    return <WeatherBlue label="Today's Forecast" {...this.state} />;
   }
 }
 
 export const WeatherBlue = props => {
   const {
-    city,
+    label,
     place,
     time,
     temperatureToday,
@@ -182,7 +182,7 @@ export const WeatherBlue = props => {
   return (
     <Container>
       <TopBlock>
-        <City>{city}</City>
+        <Label>{label}</Label>
         <RightBlock>
           <Place>{place}</Place>
           <Time>{time}</Time>

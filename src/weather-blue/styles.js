@@ -14,7 +14,7 @@ export const TopBlock = styled.div`
   color: #fff;
   padding: 10px;
 `;
-export const City = styled.div`
+export const Label = styled.div`
   display: flex;
   font-size: 28px;
 `;
