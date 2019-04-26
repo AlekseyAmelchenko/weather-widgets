@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   font-family: sans-serif;
+  min-width: 415px;
   justify-content: center;
   background-color: #01b0f1;
   flex-direction: column;
@@ -23,6 +24,7 @@ export const RightBlock = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   font-size: 20px;
+  cursor: pointer;
 `;
 export const Place = styled.div``;
 export const Time = styled.div``;

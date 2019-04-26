@@ -97,7 +97,6 @@ export class WeatherBlueContainer extends Component {
     return response.json();
   }
   processData(data) {
-    console.log(data);
     const iconCode = data.weather[0].id;
     const today = new Date(data.dt * 1000);
     const time = today
@@ -128,7 +127,6 @@ export class WeatherBlueContainer extends Component {
   }
 
   processForecast(data) {
-    console.log("forecast", data);
     const list = data.list;
     const found = [];
     const forecast = [];
@@ -140,11 +138,9 @@ export class WeatherBlueContainer extends Component {
         forecast.push(item);
       }
     }
-    console.log(forecast);
 
     return forecast.slice(1).map(data => {
       const weekDay = new Date(data.dt * 1000).getDay();
-      console.log(data.weather[0].id);
       const day = days[weekDay].slice(0, 3);
       const weather = weatherIcons[data.weather[0].id];
       return {
@@ -155,16 +151,24 @@ export class WeatherBlueContainer extends Component {
     });
   }
 
-  async componentDidMount() {
-    console.log("mounted");
+  loadAll = async () => {
     const data = await this.loadData();
     const forecast = await this.loadForecast();
-    console.log(forecast);
     this.setState({ ...data, forecast });
+  };
+
+  async componentDidMount() {
+    this.loadAll();
   }
 
   render() {
-    return <WeatherBlue label="Today's Forecast" {...this.state} />;
+    return (
+      <WeatherBlue
+        label="Today's Forecast"
+        {...this.state}
+        refresh={this.loadAll}
+      />
+    );
   }
 }
 
@@ -176,14 +180,14 @@ export const WeatherBlue = props => {
     temperatureToday,
     weather,
     today,
-    forecast
+    forecast,
+    refresh
   } = props;
-  console.log(forecast);
   return (
     <Container>
       <TopBlock>
         <Label>{label}</Label>
-        <RightBlock>
+        <RightBlock onClick={refresh} title="Click to refresh">
           <Place>{place}</Place>
           <Time>{time}</Time>
         </RightBlock>
