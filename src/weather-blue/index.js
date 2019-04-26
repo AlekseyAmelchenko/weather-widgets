@@ -81,11 +81,18 @@ const weatherIcons = {
   "500": "cloud-rain",
   "800": "sun",
   "801": "cloud-sun",
-  "802": "cloud"
+  "802": "cloud",
+  "803": "cloud"
 };
 
 export class WeatherBlueContainer extends Component {
-  state = { place: "--", time: "--", temperatureToday: "--", forecast: [] };
+  state = {
+    place: "--",
+    time: "--",
+    temperatureToday: "--",
+    forecast: [],
+    loading: true
+  };
   loadData() {
     return fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=Minsk&APPID=6765cb0ebbef7d8f8f00642dc44487bf&units=metric"
@@ -143,6 +150,7 @@ export class WeatherBlueContainer extends Component {
       const weekDay = new Date(data.dt * 1000).getDay();
       const day = days[weekDay].slice(0, 3);
       const weather = weatherIcons[data.weather[0].id];
+      //console.log(data.weather[0].id, data.weather[0]);
       return {
         temp: Math.floor(data.main.temp),
         day,
@@ -152,9 +160,10 @@ export class WeatherBlueContainer extends Component {
   }
 
   loadAll = async () => {
+    this.setState({ loading: true });
     const data = await this.loadData();
     const forecast = await this.loadForecast();
-    this.setState({ ...data, forecast });
+    this.setState({ ...data, forecast, loading: false });
   };
 
   async componentDidMount() {
@@ -181,7 +190,8 @@ export const WeatherBlue = props => {
     weather,
     today,
     forecast,
-    refresh
+    refresh,
+    loading
   } = props;
   return (
     <Container>
@@ -189,7 +199,7 @@ export const WeatherBlue = props => {
         <Label>{label}</Label>
         <RightBlock onClick={refresh} title="Click to refresh">
           <Place>{place}</Place>
-          <Time>{time}</Time>
+          <Time>{loading ? "Loading..." : time}</Time>
         </RightBlock>
       </TopBlock>
       <IconContainer>

@@ -22,12 +22,16 @@ export const Label = styled.div`
 export const RightBlock = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-end;
   font-size: 20px;
   cursor: pointer;
 `;
-export const Place = styled.div``;
-export const Time = styled.div``;
+export const Place = styled.div`
+  text-align: right;
+`;
+export const Time = styled.div`
+  text-align: right;
+`;
 export const IconContainer = styled.div`
   display: flex;
   justify-content: center;
