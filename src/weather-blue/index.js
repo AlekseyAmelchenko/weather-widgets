@@ -23,39 +23,6 @@ import {
 } from "./styles";
 import cloud from "../svg/cloud-weather-blue.svg";
 
-const week = [
-  {
-    day: "Tue",
-    weather: "sun",
-    temp: "31"
-  },
-  {
-    day: "Wed",
-    weather: "cloud",
-    temp: "30"
-  },
-  {
-    day: "Thu",
-    weather: "cloud",
-    temp: "33"
-  },
-  {
-    day: "Fri",
-    weather: "cloud-rain",
-    temp: "32"
-  },
-  {
-    day: "Sat",
-    weather: "cloud-sun",
-    temp: "33"
-  },
-  {
-    day: "Sun",
-    weather: "sun",
-    temp: "31"
-  }
-];
-
 const WeekDay = ({ day, weather, temp }) => (
   <DayWeekContainer>
     <Day>{day}</Day>
@@ -104,7 +71,6 @@ export class WeatherBlueContainer extends Component {
     return response.json();
   }
   processData(data) {
-    const iconCode = data.weather[0].id;
     const today = new Date(data.dt * 1000);
     const time = today
       .toGMTString()
